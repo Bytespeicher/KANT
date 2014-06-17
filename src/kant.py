@@ -88,12 +88,10 @@ def add_user():
     if not session.get('logged_in'):
         abort(401)
 
-    password = pwd_context.encrypt(request.form['password'])
-
     db = get_db()
-    db.execute('insert into user (name, password, mail, phone) values (?, ?, ?, ?)',
-               [request.form['name'], password,
-               request.form['mail'], request.form['phone']])
+    db.execute('insert into users (name, mail, phone) values (?, ?, ?)',
+               [request.form['name'], request.form['mail'],
+                request.form['phone']])
     db.commit()
     flash('New user was successfully submitted')
     return redirect(url_for('show_entries'))
