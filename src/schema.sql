@@ -29,7 +29,16 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id        INTEGER   PRIMARY KEY AUTOINCREMENT,
   name      TEXT      NOT NULL,
-  password  TEXT      NOT NULL,
   mail      TEXT      NOT NULL, 
   phone     INTEGER   NOT NULL
 );
+
+DROP TABLE IF EXISTS admins;
+CREATE TABLE admins (
+  id        INTEGER   PRIMARY KEY AUTOINCREMENT,
+  name      TEXT      NOT NULL,
+  password  TEXT      NOT NULL,
+  mail      TEXT      NOT NULL,
+);
+
+INSERT INTO admins (name,password,mail) VALUES ('admin', '$6$rounds=109454$C4Ips3OIMfXGvij2$6qCWMZziJ9/QHYxLejRtKQrTgL4s5EZDITrIm3nUdoXCuzGJu9iRenZ15dAyDTXsxpYLWiXdvw0Fn8IVIDJrv0, '')
