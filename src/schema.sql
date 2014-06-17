@@ -38,7 +38,7 @@ CREATE TABLE admins (
   id        INTEGER   PRIMARY KEY AUTOINCREMENT,
   name      TEXT      NOT NULL,
   password  TEXT      NOT NULL,
-  mail      TEXT      NOT NULL,
+  mail      TEXT      NOT NULL
 );
 
-INSERT INTO admins (name,password,mail) VALUES ('admin', '$6$rounds=109454$C4Ips3OIMfXGvij2$6qCWMZziJ9/QHYxLejRtKQrTgL4s5EZDITrIm3nUdoXCuzGJu9iRenZ15dAyDTXsxpYLWiXdvw0Fn8IVIDJrv0, '')
+INSERT INTO admins (name,password,mail) VALUES ('admin', '$6$rounds=109454$C4Ips3OIMfXGvij2$6qCWMZziJ9/QHYxLejRtKQrTgL4s5EZDITrIm3nUdoXCuzGJu9iRenZ15dAyDTXsxpYLWiXdvw0Fn8IVIDJrv0', '');
