@@ -120,5 +120,10 @@ def logout():
     flash('You were logged out')
     return redirect(url_for('show_entries'))
 
+@app.route('/install')
+def install():
+    init_db()
+
+
 if __name__ == '__main__':
     app.run()
