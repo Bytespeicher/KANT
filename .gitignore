@@ -1,2 +1,8 @@
 env
 src/*.db
+
+# Python
+*.pyc
+
+# Vim
+*.swp
