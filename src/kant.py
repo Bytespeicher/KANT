@@ -121,6 +121,7 @@ def logout():
 @app.route('/install')
 def install():
     init_db()
+    return render_template('install.html')
 
 
 if __name__ == '__main__':
