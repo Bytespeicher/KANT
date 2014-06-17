@@ -1,25 +1,18 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+    <form action="{{ url_for('add_user') }}" method=post class=add-entry>
       <dl>
-        <dt>Title:
-        <dd><input type=text size=30 name=title>
-        <dt>Text:
-        <dd><textarea name=text rows=5 cols=40></textarea>
-        <dd><input type=submit value=Share>
+        <dt>Name:
+        <dd><input type=text name=name>
+        <dt>Password:
+        <dd><input type=password name=password>
+        <dt>Phone:
+        <dd><input type=text name=phone>
+        <dt>E-Mail:
+        <dd><input type=text name=mail>
+        <dd><input type=submit value=Save>
       </dl>
     </form>
   {% endif %}
-  <table class=entries>
-  {% for key in keys %}
-  <tr>
-    <td>{{ key.name|safe }}</td>
-    <td>{{ key.date }}</td>
-    <td>{{ key.user }}</td>
-  </tr>
-  {% else %}
-    <li><em>Unbelievable.  No entries here so far</em>
-  {% endfor %}
-  </ul>
 {% endblock %}
