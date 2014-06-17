@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('add_key') }}" method=post class=add-entry>
+      <dl>
+        <dt>Name:
+        <dd><input type=text name=name>
+        <dt>Current User:
+        <dd>
+            <select name=user>
+                {% for user in users %}
+                  <option value="{{ user.id }}">{{ user.name }}</option>
+                {% endfor %}
+            </select>
+        <dd><input type=submit value=Save>
+      </dl>
+    </form>
+  {% endif %}
+{% endblock %}
