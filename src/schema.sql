@@ -42,3 +42,11 @@ CREATE TABLE admins (
 );
 
 INSERT INTO admins (name,password,mail) VALUES ('admin', '$6$rounds=109454$C4Ips3OIMfXGvij2$6qCWMZziJ9/QHYxLejRtKQrTgL4s5EZDITrIm3nUdoXCuzGJu9iRenZ15dAyDTXsxpYLWiXdvw0Fn8IVIDJrv0', '');
+
+DROP TABLE IF EXISTS config;
+CREATE TABLE config (
+  name      TEXT    PRIMARY KEY,
+  value     TEXT
+);
+
+INSERT OR REPLACE INTO config (name, value) VALUES ('dbversion', '1');
