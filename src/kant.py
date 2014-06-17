@@ -51,7 +51,7 @@ def close_db(error):
 
 
 @app.route('/')
-def show_entries():
+def show_keys():
     db = get_db()
     cur = db.execute('select name, last_update, user from keys order by last_update desc')
     keys = cur.fetchall()
@@ -74,7 +74,7 @@ def add_key():
                datetime.datetime.now()])
     db.commit()
     flash('New key was successfully submitted')
-    return redirect(url_for('show_entries'))
+    return redirect(url_for('show_keys'))
 
 @app.route('/new_user', methods=['GET'])
 def new_user():
@@ -94,7 +94,7 @@ def add_user():
                 request.form['phone']])
     db.commit()
     flash('New user was successfully submitted')
-    return redirect(url_for('show_entries'))
+    return redirect(url_for('show_users'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -108,7 +108,7 @@ def login():
         else:
             session['logged_in'] = True
             flash('You were logged in')
-            return redirect(url_for('show_entries'))
+            return redirect(url_for('show_keys'))
     return render_template('login.html', error=error)
 
 
@@ -116,7 +116,7 @@ def login():
 def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
-    return redirect(url_for('show_entries'))
+    return redirect(url_for('show_keys'))
 
 @app.route('/install')
 def install():
