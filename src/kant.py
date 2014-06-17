@@ -69,7 +69,7 @@ def add_key():
     if not session.get('logged_in'):
         abort(401)
     db = get_db()
-    db.execute('insert into key (name, user, last_update) values (?, ?, ?)',
+    db.execute('insert into keys (name, user, last_update) values (?, ?, ?)',
                [request.form['name'], request.form['user'],
                datetime.datetime.now()])
     db.commit()
