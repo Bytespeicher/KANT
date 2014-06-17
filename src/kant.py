@@ -88,7 +88,7 @@ def add_user():
     if not session.get('logged_in'):
         abort(401)
 
-    password = pwd_context.encrypt(request.form['password']).hexdigest()
+    password = pwd_context.encrypt(request.form['password'])
 
     db = get_db()
     db.execute('insert into user (name, password, mail, phone) values (?, ?, ?, ?)',
