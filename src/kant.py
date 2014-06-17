@@ -57,7 +57,14 @@ def show_entries():
     keys = cur.fetchall()
     return render_template('show_entries.html', keys=keys)
 
-@app.route('/add-key', methods=['POST'])
+@app.route('/new_key', methods=['GET'])
+def new_key():
+    if not session.get('logged_in'):
+        abort(401)
+
+    return render_template('new_key.html')
+
+@app.route('/add_key', methods=['POST'])
 def add_key():
     if not session.get('logged_in'):
         abort(401)
@@ -69,8 +76,14 @@ def add_key():
     flash('New key was successfully submitted')
     return redirect(url_for('show_entries'))
 
+@app.route('/new_user', methods=['GET'])
+def new_user():
+    if not session.get('logged_in'):
+        abort(401)
 
-@app.route('/add-user', methods=['POST'])
+    return render_template('new_user.html')
+
+@app.route('/add_user', methods=['POST'])
 def add_user():
     if not session.get('logged_in'):
         abort(401)
