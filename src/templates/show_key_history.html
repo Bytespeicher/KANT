@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>History of key {{ key.name }}</h2>
+
+  <table class=entries>
+      <tr>
+          <th>Key name</th>
+          <th>User name</th>
+          <th>Last update</th>
+          <th>History</th>
+      </tr>
+  {% for key in keys %}
+  <tr>
+    <td>{{ key.name|safe }}</td>
+    <td>{{ key.user_name }}</td>
+    <td>{{ key.last_update }}</td>
+  </tr>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+{% endblock %}
