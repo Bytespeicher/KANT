@@ -57,6 +57,16 @@ def show_keys():
     keys = cur.fetchall()
     return render_template('show_keys.html', keys=keys)
 
+@app.route('/key_history')
+def show_key_history(id):
+    db = get_db()
+    cur = db.execute('SELECT * FROM key_history WHERE key = ?', [id])
+    history = cur.fetchall()
+
+    cur = db.execute('SELECT name FROM keys WHERE id = ?', [id])
+    key = cur.fetchall()
+
+    return render_template('show_key_history.html', history=history, key=key)
 
 @app.route('/users')
 def show_users():
