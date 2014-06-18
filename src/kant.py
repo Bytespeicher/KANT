@@ -55,14 +55,27 @@ def show_keys():
     db = get_db()
     cur = db.execute('select name, last_update, user from keys order by last_update desc')
     keys = cur.fetchall()
-    return render_template('show_entries.html', keys=keys)
+    return render_template('show_keys.html', keys=keys)
+
+
+@app.route('/users')
+def show_users():
+    db = get_db()
+    cur = db.execute('SELECT name, mail, phone FROM users ORDER BY name')
+    users = cur.fetchall()
+    return render_template('show_users.html', users=users)
+
 
 @app.route('/new_key', methods=['GET'])
 def new_key():
     if not session.get('logged_in'):
         abort(401)
 
-    return render_template('new_key.html')
+    db = get_db()
+    cur = db.execute('SELECT id, name FROM users ORDER BY name')
+    users = cur.fetchall()
+
+    return render_template('new_key.html', users=users)
 
 @app.route('/add_key', methods=['POST'])
 def add_key():
