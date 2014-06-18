@@ -1,11 +1,18 @@
 {% extends "layout.html" %}
 {% block body %}
   <table class=entries>
+      <tr>
+          <th>Key name</th>
+          <th>User name</th>
+          <th>Last update</th>
+          <th>History</th>
+      </tr>
   {% for key in keys %}
   <tr>
     <td>{{ key.name|safe }}</td>
-    <td>{{ key.date }}</td>
-    <td>{{ key.user }}</td>
+    <td>{{ key.user_name }}</td>
+    <td>{{ key.last_update }}</td>
+    <td><a href="{{ url_for('show_key_history', key.id) }}">History</a></td>
   </tr>
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em>
