@@ -5,7 +5,9 @@ import datetime
 
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
-from passlib.apps import custom_app_context as pwd_context
+
+from flask.ext.babel import Babel
+from passlib.apps    import custom_app_context as pwd_context
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -15,9 +17,29 @@ app.config.update(dict(
     DEBUG=True,
     SECRET_KEY='development key',
     USERNAME='admin',
-    PASSWORD='admin'
+    PASSWORD='admin',
+    BABEL_DEFAULT_LOCALE='de',
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
+
+babel = Babel(app)
+
+@babel.localeselector
+def get_locale():
+    # if a user is logged in, use the locale from the user settings
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.locale
+    # otherwise try to guess the language from the user accept
+    # header the browser transmits.  We support de/fr/en in this
+    # example.  The best match wins.
+    return request.accept_languages.best_match(['de', 'fr', 'en'])
+
+@babel.timezoneselector
+def get_timezone():
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.timezone
 
 def connect_db():
     """Connects to the specific database."""
