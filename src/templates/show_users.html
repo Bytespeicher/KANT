@@ -1,6 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
   <table class=entries>
+    <tr>
+        <th>Name</th>
+        <th>Mail</th>
+        <th>Phone</th>
+        <th>Edit</th>
+    </tr>
   {% for user in users %}
   <tr>
     <td>{{ user.name|safe }}</td>
