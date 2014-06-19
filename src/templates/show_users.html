@@ -15,7 +15,9 @@
       <td>{{ url_for('edit_user', user.id) }}</td>
     </tr>
   {% else %}
-    <li><em>Unbelievable.  No entries here so far</em>
+    <tr>
+      <td colspan=4><em>Unbelievable.  No entries here so far</em></td>
+    </tr>
   {% endfor %}
-  </ul>
+  </table>
 {% endblock %}
