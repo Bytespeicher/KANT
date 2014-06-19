@@ -75,7 +75,8 @@ def close_db(error):
 @app.route('/')
 def show_keys():
     db = get_db()
-    cur = db.execute('SELECT key.name, key.last_update, key.user, user.name as user_name ' +
+    cur = db.execute('SELECT key.id, key.name, key.last_update, key.user, ' +
+                     'user.name AS user_name ' +
                      'FROM keys AS key ' +
                      'JOIN users AS user ON key.user = user.id ' +
                      'ORDER BY key.last_update DESC')
@@ -83,7 +84,7 @@ def show_keys():
 
     return render_template('show_keys.html', keys=keys)
 
-@app.route('/key_history')
+@app.route('/key_history/<int:id>')
 def show_key_history(id):
     db = get_db()
     cur = db.execute('SELECT * FROM key_history WHERE key = ?', [id])
