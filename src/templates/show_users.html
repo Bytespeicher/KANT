@@ -1,14 +1,23 @@
 {% extends "layout.html" %}
 {% block body %}
   <table class=entries>
+    <tr>
+        <th>Name</th>
+        <th>Mail</th>
+        <th>Phone</th>
+        <th>Edit</th>
+    </tr>
   {% for user in users %}
-  <tr>
-    <td>{{ user.name|safe }}</td>
-    <td>{{ user.mail|safe }}</td>
-    <td>{{ user.phone|safe }}</td>
-  </tr>
+    <tr>
+      <td>{{ user.name|safe }}</td>
+      <td>{{ user.mail|safe }}</td>
+      <td>{{ user.phone|safe }}</td>
+      <td>{{ url_for('edit_user', user.id) }}</td>
+    </tr>
   {% else %}
-    <li><em>Unbelievable.  No entries here so far</em>
+    <tr>
+      <td colspan=4><em>Unbelievable.  No entries here so far</em></td>
+    </tr>
   {% endfor %}
-  </ul>
+  </table>
 {% endblock %}
