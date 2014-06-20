@@ -198,8 +198,6 @@ def save_user():
     if not session.get('logged_in'):
         abort(401)
 
-    print(request.form)
-
     db = get_db()
     db.execute('UPDATE users SET name = ?, mail = ?, phone = ? WHERE id = ?',
                [request.form['name'], request.form['mail'],
