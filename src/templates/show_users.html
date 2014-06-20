@@ -12,7 +12,7 @@
       <td>{{ user.name|safe }}</td>
       <td>{{ user.mail|safe }}</td>
       <td>{{ user.phone|safe }}</td>
-      <td>{{ url_for('edit_user', user.id) }}</td>
+      <td><a href="{{ url_for('edit_user', id=user.id) }}">Edit user</a></td>
     </tr>
   {% else %}
     <tr>
