@@ -1,6 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
+    {% if not users %}
+    <div>
+        No users yet to assign keys to. 
+        <a href="{{ url_for('new_user') }}">Create one</a>
+    </div>
+    {% else %}
     <form action="{{ url_for('add_key') }}" method=post class=add-entry>
       <dl>
         <dt>Name:
@@ -15,5 +21,6 @@
         <dd><input type=submit value=Save>
       </dl>
     </form>
+    {% endif %}
   {% endif %}
 {% endblock %}
