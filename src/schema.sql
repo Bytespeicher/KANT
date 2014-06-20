@@ -3,7 +3,7 @@ CREATE TABLE keys (
   id          INTEGER   PRIMARY KEY AUTOINCREMENT,
   name        TEXT      NOT NULL,
   user        INTEGER   NOT NULL,
-  last_update INTEGER   NOT NULL,
+  last_update DATETIME  DEFAULT CURRENT_TIMESTAMP,
 
   FOREIGN KEY(user) REFERENCES user(id)
 );
@@ -16,7 +16,7 @@ CREATE TABLE key_history (
   user_after  INTEGER   NOT NULL,
   name_before TEXT      NOT NULL,
   name_after  TEXT      NOT NULL,
-  update_time INTEGER   NOT NULL,
+  update_time DATETIME  DEFAULT CURRENT_TIMESTAMP,
   change_user INTEGER   NOT NULL,
 
   FOREIGN KEY(user_before) REFERENCES user(id),
