@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+    <form method=post action="{{ url_for('save_user') }}">
+        Name:  <input name=name value="{{ user.name|safe }}">
+        Mail:  <input name=mail value="{{ user.mail|safe }}" type=email>
+        Phone: <input name=phone value="{{ user.phone|safe }}" type=phone>
+        <input name=id value="{{ user.id }}" type=hidden>
+        <input type=submit>
+    </form>
+{% endblock %}

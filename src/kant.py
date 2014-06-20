@@ -147,6 +147,33 @@ def add_user():
     return redirect(url_for('show_users'))
 
 
+@app.route('/save_user', methods=['POST'])
+def save_user():
+    if not session.get('logged_in'):
+        abort(401)
+
+    print(request.form)
+
+    db = get_db()
+    db.execute('UPDATE users SET name = ?, mail = ?, phone = ? WHERE id = ?',
+               [request.form['name'], request.form['mail'],
+                request.form['phone'], request.form['id']])
+    db.commit()
+    flash('New user was successfully submitted')
+    return redirect(url_for('show_users'))
+
+
+@app.route('/edit_user/<int:id>', methods=['GET'])
+def edit_user(id):
+    if not session.get('logged_in'):
+        abort(401)
+
+    db = get_db()
+    cur = db.execute('SELECT id, name, mail, phone FROM users WHERE id = ?', [id])
+
+    user = cur.fetchone()
+    return render_template('edit_user.html', user=user)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
