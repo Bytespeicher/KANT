@@ -9,16 +9,17 @@
     {% else %}
     <form action="{{ url_for('add_key') }}" method=post class=add-entry>
       <dl>
-        <dt>Name:
-        <dd><input type=text name=name>
-        <dt>Current User:
+        <dt>Name:</dt>
+        <dd><input type=text name=name></dd>
+        <dt>Current User:</dt>
         <dd>
             <select name=user>
                 {% for user in users %}
                   <option value="{{ user.id }}">{{ user.name }}</option>
                 {% endfor %}
             </select>
-        <dd><input type=submit value=Save>
+        </dd>
+        <dd><input type=submit value=Save></dd>
       </dl>
     </form>
     {% endif %}
