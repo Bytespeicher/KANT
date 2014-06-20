@@ -90,7 +90,7 @@ def show_key_history(id):
     cur = db.execute('SELECT * FROM key_history WHERE key = ?', [id])
     history = cur.fetchall()
 
-    cur = db.execute('SELECT name FROM keys WHERE id = ?', [id])
+    cur = db.execute('SELECT name, user FROM keys WHERE id = ?', [id])
     key = cur.fetchall()
 
     return render_template('show_key_history.html', history=history, key=key)
