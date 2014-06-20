@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+    <form method=post action="{{ url_for('save_key') }}">
+      <dl>
+        <dt>Name:</dt>
+        <dd><input type=text name=name value="{{ key.name }}"></dd>
+        <dt>Current User:</dt>
+        <dd>
+            <select name=user>
+                {% for user in users %}
+                  <option value="{{ user.id }}"
+                        {% if user.id == key.user %}selected=selected{% endif %}>
+                    {{ user.name }}
+                  </option>
+                {% endfor %}
+            </select>
+        </dd>
+        <dd><input type=submit value=Save></dd>
+        <input name=id value="{{ key.id }}" type=hidden>
+        <input type=submit>
+      </dl>
+    </form>
+{% endblock %}
