@@ -203,7 +203,7 @@ def save_user():
                [request.form['name'], request.form['mail'],
                 request.form['phone'], request.form['id']])
     db.commit()
-    flash('New user was successfully submitted')
+    flash('Changes to the user where saved successfully!')
     return redirect(url_for('show_users'))
 
 
