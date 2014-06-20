@@ -98,7 +98,7 @@ def show_key_history(id):
 @app.route('/users')
 def show_users():
     db = get_db()
-    cur = db.execute('SELECT name, mail, phone FROM users ORDER BY name')
+    cur = db.execute('SELECT id, name, mail, phone FROM users ORDER BY name')
     users = cur.fetchall()
     return render_template('show_users.html', users=users)
 
