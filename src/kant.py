@@ -126,6 +126,52 @@ def add_key():
     flash('New key was successfully submitted')
     return redirect(url_for('show_keys'))
 
+@app.route('/edit_key/<int:id>', methods=['GET'])
+def edit_key(id):
+    if not session.get('logged_in'):
+        abort(401)
+
+    db   = get_db()
+    cur  = db.execute('SELECT id, name, user FROM keys WHERE id = ?', [id])
+    key = cur.fetchone()
+
+    db   = get_db()
+    cur  = db.execute('SELECT id, name FROM users')
+    users = cur.fetchall()
+
+    return render_template('edit_key.html', key=key, users=users)
+
+@app.route('/save_key', methods=['POST'])
+def save_key():
+    if not session.get('logged_in'):
+        abort(401)
+
+    key = {
+        'id':   int(request.form['id']),
+        'name': str(request.form['name']),
+        'user': int(request.form['user'])
+    }
+
+    db = get_db()
+    cur = db.execute('SELECT user, name FROM keys WHERE id = ?',
+                     [request.form['id'])
+    old = db.fetchone()
+
+    db.execute('INSERT INTO key_history (key, user_before, user_after, '+
+               'name_before, name_after, update_time, change_user) ' +
+               'VALUES (?, ?, ?, ?, ?, ?, ?)',
+              [key['id'], old['user'], key['user'], old['name'], key['name'],
+              time.time(), 0])
+    db.commit()
+
+    db.execute('UPDATE keys SET name = ?, user = ? WHERE id = ?',
+               [key['name'], key['user'], key['id']])
+    db.commit()
+
+    flash('Changes to the user where saved successfully!')
+    return redirect(url_for('show_users'))
+
+
 @app.route('/new_user', methods=['GET'])
 def new_user():
     if not session.get('logged_in'):
