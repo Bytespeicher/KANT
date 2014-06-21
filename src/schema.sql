@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS keys;
 CREATE TABLE keys (
   id          INTEGER   PRIMARY KEY AUTOINCREMENT,
-  name        TEXT      NOT NULL,
+  name        TEXT      UNIQUE,
   user        INTEGER   NOT NULL,
   last_update DATETIME  DEFAULT CURRENT_TIMESTAMP,
 
@@ -28,7 +28,7 @@ CREATE TABLE key_history (
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id        INTEGER   PRIMARY KEY AUTOINCREMENT,
-  name      TEXT      NOT NULL,
+  name      TEXT      UNIQUE,
   mail      TEXT      NOT NULL, 
   phone     INTEGER   NOT NULL
 );
@@ -36,7 +36,7 @@ CREATE TABLE users (
 DROP TABLE IF EXISTS admins;
 CREATE TABLE admins (
   id        INTEGER   PRIMARY KEY AUTOINCREMENT,
-  name      TEXT      NOT NULL,
+  name      TEXT      UNIQUE,
   password  TEXT      NOT NULL,
   mail      TEXT      NOT NULL
 );

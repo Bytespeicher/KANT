@@ -6,8 +6,9 @@ import datetime
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 
-from flask.ext.babel import Babel
-from passlib.apps    import custom_app_context as pwd_context
+from flask.ext.babel    import Babel
+from passlib.apps       import custom_app_context as pwd_context
+from config             import LANGUAGES
 
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -30,10 +31,7 @@ def get_locale():
     user = getattr(g, 'user', None)
     if user is not None:
         return user.locale
-    # otherwise try to guess the language from the user accept
-    # header the browser transmits.  We support de/fr/en in this
-    # example.  The best match wins.
-    return request.accept_languages.best_match(['de', 'fr', 'en'])
+    return request.accept_languages.best_match(LANGUAGES.keys())
 
 @babel.timezoneselector
 def get_timezone():
