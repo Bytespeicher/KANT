@@ -112,18 +112,6 @@ def new_key():
 
     return render_template('new_key.html', users=users)
 
-@app.route('/add_key', methods=['POST'])
-def add_key():
-    if not session.get('logged_in'):
-        abort(401)
-    db = get_db()
-    db.execute('INSERT INTO keys (name, user, last_update) VALUES (?, ?, ?)',
-               [request.form['name'], request.form['user'],
-               datetime.datetime.now()])
-    db.commit()
-    flash('New key was successfully submitted')
-    return redirect(url_for('show_keys'))
-
 @app.route('/edit_key/<int:id>', methods=['GET'])
 def edit_key(id):
     if not session.get('logged_in'):
@@ -133,7 +121,6 @@ def edit_key(id):
     cur  = db.execute('SELECT id, name, user FROM keys WHERE id = ?', [id])
     key = cur.fetchone()
 
-    db   = get_db()
     cur  = db.execute('SELECT id, name FROM users')
     users = cur.fetchall()
 
@@ -144,30 +131,37 @@ def save_key():
     if not session.get('logged_in'):
         abort(401)
 
-    key = {
-        'id':   int(request.form['id']),
-        'name': str(request.form['name']),
-        'user': int(request.form['user'])
-    }
-
     db = get_db()
-    cur = db.execute('SELECT user, name FROM keys WHERE id = ?',
-                     [request.form['id'])
-    old = db.fetchone()
 
-    db.execute('INSERT INTO key_history (key, user_before, user_after, '+
-               'name_before, name_after, update_time, change_user) ' +
-               'VALUES (?, ?, ?, ?, ?, ?, ?)',
-              [key['id'], old['user'], key['user'], old['name'], key['name'],
-              time.time(), 0])
-    db.commit()
+    if 'id' in request.form.keys():
+        key = {
+            'id':   int(request.form['id']),
+            'name': str(request.form['name']),
+            'user': int(request.form['user'])
+        }
 
-    db.execute('UPDATE keys SET name = ?, user = ? WHERE id = ?',
-               [key['name'], key['user'], key['id']])
-    db.commit()
+        cur = db.execute('SELECT user, name FROM keys WHERE id = ?',
+                         [request.form['id']])
+
+        old = cur.fetchone()
+
+        db.execute('INSERT INTO key_history (key, user_before, user_after, '+
+                   'name_before, name_after, change_user) ' +
+                   'VALUES (?, ?, ?, ?, ?, ?)',
+                  [key['id'], old['user'], key['user'], old['name'], key['name'], 0])
+        db.commit()
+
+        db.execute('UPDATE keys SET name = ?, user = ? WHERE id = ?',
+                   [key['name'], key['user'], key['id']])
+        db.commit()
+    else:
+        db.execute('INSERT INTO keys (name, user, last_update) VALUES (?, ?, ?)',
+                   [request.form['name'], request.form['user'],
+                   datetime.datetime.now()])
+        db.commit()
 
     flash('Changes to the user where saved successfully!')
-    return redirect(url_for('show_users'))
+    return redirect(url_for('show_keys'))
 
 
 @app.route('/new_user', methods=['GET'])
@@ -177,30 +171,24 @@ def new_user():
 
     return render_template('new_user.html')
 
-@app.route('/add_user', methods=['POST'])
-def add_user():
-    if not session.get('logged_in'):
-        abort(401)
-
-    db = get_db()
-    db.execute('INSERT INTO users (name, mail, phone) VALUES (?, ?, ?)',
-               [request.form['name'], request.form['mail'],
-                request.form['phone']])
-    db.commit()
-    flash('New user was successfully submitted')
-    return redirect(url_for('show_users'))
-
-
 @app.route('/save_user', methods=['POST'])
 def save_user():
     if not session.get('logged_in'):
         abort(401)
 
     db = get_db()
-    db.execute('UPDATE users SET name = ?, mail = ?, phone = ? WHERE id = ?',
-               [request.form['name'], request.form['mail'],
-                request.form['phone'], request.form['id']])
+
+    if 'id' in request.form.keys():
+        db.execute('UPDATE users SET name = ?, mail = ?, phone = ? WHERE id = ?',
+                   [request.form['name'], request.form['mail'],
+                    request.form['phone'], request.form['id']])
+    else:
+        db.execute('INSERT INTO users (name, mail, phone) VALUES (?, ?, ?)',
+                   [request.form['name'], request.form['mail'],
+                    request.form['phone']])
+
     db.commit()
+
     flash('Changes to the user where saved successfully!')
     return redirect(url_for('show_users'))
 

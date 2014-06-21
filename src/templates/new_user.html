@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if session.logged_in %}
-    <form action="{{ url_for('add_user') }}" method=post class=add-entry>
+    <form action="{{ url_for('save_user') }}" method=post class=add-entry>
       <dl>
         <dt>Name:
         <dd><input type=text name=name>
