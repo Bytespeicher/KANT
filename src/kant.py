@@ -208,9 +208,15 @@ def edit_user(id):
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != app.config['USERNAME']:
+        db = get_db()
+        cur = db.execute('SELECT password FROM admins WHERE name = ?',
+                         [request.form['username']])
+
+        res = cur.fetchone()
+
+        if res == None:
             error = 'Invalid username'
-        elif request.form['password'] != app.config['PASSWORD']:
+        elif pwd_context.verify(request.form['password'], res['password']) == True:
             error = 'Invalid password'
         else:
             session['logged_in'] = True
