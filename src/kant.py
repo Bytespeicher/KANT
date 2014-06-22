@@ -222,6 +222,12 @@ def login():
             return redirect(url_for('show_keys'))
     return render_template('login.html', error=error)
 
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    flash('You were logged out')
+    return redirect(url_for('show_keys'))
+
 @app.route('/new_admin', methods=['GET'])
 def new_admin():
     if not session.get('logged_in'):
@@ -266,12 +272,6 @@ def save_admin():
 
     flash('Changes to the admin where saved successfully!')
     return redirect(url_for('show_admins'))
-
-@app.route('/logout')
-def logout():
-    session.pop('logged_in', None)
-    flash('You were logged out')
-    return redirect(url_for('show_keys'))
 
 @app.route('/install')
 def install():
