@@ -214,7 +214,7 @@ def login():
 
         if res == None:
             error = 'Invalid username'
-        elif pwd_context.verify(request.form['password'], res['password']) == True:
+        elif pwd_context.verify(request.form['password'], res['password']) != True:
             error = 'Invalid password'
         else:
             session['logged_in'] = True
@@ -252,7 +252,7 @@ def save_admin():
         if request.form['password'] == '******':
             db.execute('UPDATE adminss SET name = ?, mail = ?, password = ? WHERE id = ?',
                        [request.form['name'], request.form['mail'],
-                        request.form['password'], request.form['id']])
+                        password, request.form['id']])
         else:
             db.execute('UPDATE users SET name = ?, mail = ? WHERE id = ?',
                        [request.form['name'], request.form['mail'],
@@ -260,7 +260,7 @@ def save_admin():
     else:
         db.execute('INSERT INTO admins (name, mail, password) VALUES (?, ?, ?)',
                    [request.form['name'], request.form['mail'],
-                    request.form['password']])
+                    password])
 
     db.commit()
 
