@@ -17,8 +17,6 @@ app.config.update(dict(
     DATABASE=os.path.join(app.root_path, 'kant.db'),
     DEBUG=True,
     SECRET_KEY='development key',
-    USERNAME='admin',
-    PASSWORD='admin',
     BABEL_DEFAULT_LOCALE='de',
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
