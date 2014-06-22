@@ -222,6 +222,50 @@ def login():
             return redirect(url_for('show_keys'))
     return render_template('login.html', error=error)
 
+@app.route('/new_admin', methods=['GET'])
+def new_admin():
+    if not session.get('logged_in'):
+        abort(401)
+
+    return render_template('new_admin.html')
+
+@app.route('/edit_admin/<int:id>', methods=['GET'])
+def edit_admin(id):
+    if not session.get('logged_in'):
+        abort(401)
+
+    db = get_db()
+    cur = db.execute('SELECT id, name, mail FROM users WHERE id = ?', [id])
+
+    admin = cur.fetchone()
+    return render_template('edit_admin.html', admin=admin)
+
+@app.route('/save_admin', methods=['POST'])
+def save_admin():
+    if not session.get('logged_in'):
+        abort(401)
+
+    db = get_db()
+    password = pwd_context.encrypt(request.form['password'])
+
+    if 'id' in request.form.keys():
+        if request.form['password'] == '******':
+            db.execute('UPDATE adminss SET name = ?, mail = ?, password = ? WHERE id = ?',
+                       [request.form['name'], request.form['mail'],
+                        request.form['password'], request.form['id']])
+        else:
+            db.execute('UPDATE users SET name = ?, mail = ? WHERE id = ?',
+                       [request.form['name'], request.form['mail'],
+                        request.form['id']])
+    else:
+        db.execute('INSERT INTO admins (name, mail, password) VALUES (?, ?, ?)',
+                   [request.form['name'], request.form['mail'],
+                    request.form['password']])
+
+    db.commit()
+
+    flash('Changes to the admin where saved successfully!')
+    return redirect(url_for('show_admins'))
 
 @app.route('/logout')
 def logout():
