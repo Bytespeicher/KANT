@@ -5,16 +5,20 @@
           <th>Key name</th>
           <th>User name</th>
           <th>Last update</th>
-          <th>History</th>
-          <th>&nbsp;</th>
+          {% if session.logged_in %}
+            <th>History</th>
+            <th>&nbsp;</th>
+          {% endif %}
       </tr>
   {% for key in keys %}
   <tr>
     <td>{{ key.name|safe }}</td>
     <td>{{ key.user_name }}</td>
     <td>{{ key.last_update }}</td>
-    <td><a href="{{ url_for('show_key_history', id=key.id) }}">History</a></td>
-    <td><a href="{{ url_for('edit_key', id=key.id) }}">Edit</a></td>
+    {% if session.logged_in %}
+      <td><a href="{{ url_for('show_key_history', id=key.id) }}">History</a></td>
+      <td><a href="{{ url_for('edit_key', id=key.id) }}">Edit</a></td>
+    {% endif %}
   </tr>
   {% else %}
     <tr><td colspan=4><em>Unbelievable.  No entries here so far</em></td></tr>
