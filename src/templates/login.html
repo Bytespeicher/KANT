@@ -1,14 +1,16 @@
 {% extends "layout.html" %}
 {% block body %}
-  <h2>KANT - Login</h2>
-  {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+  <h2>KANT - {{ _('Login') }}</h2>
+  {% if error %}
+    <p class=error><strong>{{ _('Error') }}':</strong> {{ error }}
+  {% endif %}
   <form action="{{ url_for('login') }}" method=post>
     <dl>
-      <dt>Username:
+      <dt>{{ _('Username') }}':
       <dd><input type=text name=username>
-      <dt>Password:
+      <dt>{{ _('Password') }}':
       <dd><input type=password name=password>
-      <dd><input type=submit value=Login>
+      <dd><input type=submit value={{ _('Login') }}>
     </dl>
   </form>
 {% endblock %}
