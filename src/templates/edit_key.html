@@ -2,9 +2,9 @@
 {% block body %}
     <form method=post action="{{ url_for('save_key') }}">
       <dl>
-        <dt>Name:</dt>
+        <dt>{{ _('Name') }}:</dt>
         <dd><input type=text name=name value="{{ key.name }}"></dd>
-        <dt>Current User:</dt>
+        <dt>{{ _('Current User') }}:</dt>
         <dd>
             <select name=user>
                 {% for user in users %}
@@ -15,9 +15,9 @@
                 {% endfor %}
             </select>
         </dd>
-        <dd><input type=submit value=Save></dd>
+        <dd><input type=submit value="{{ _('Save') }}"></dd>
         <input name=id value="{{ key.id }}" type=hidden>
-        <input type=submit>
+        <input type=submit value="{{ _('Submit') }}">
       </dl>
     </form>
 {% endblock %}
