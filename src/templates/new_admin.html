@@ -3,13 +3,13 @@
   {% if session.logged_in %}
     <form action="{{ url_for('save_admin') }}" method=post class=add-entry>
       <dl>
-        <dt>Name:
+        <dt>{{ _('Name') }}':
         <dd><input type=text name=name>
-        <dt>Password:
+        <dt>{{ _('Password') }}':
         <dd><input type=password name=password>
-        <dt>E-Mail:
+        <dt>{{ _('Mail') }}':
         <dd><input type=text name=mail>
-        <dd><input type=submit value=Save>
+        <dd><input type=submit value={{ _('Save') }}>
       </dl>
     </form>
   {% endif %}
