@@ -3,15 +3,15 @@
   {% if session.logged_in %}
     {% if not users %}
     <div>
-        No users yet to assign keys to. 
-        <a href="{{ url_for('new_user') }}">Create one</a>
+        {{ _('No users yet to assign keys to.') }}
+        <a href="{{ url_for('new_user') }}">{{ _('Create a users') }}</a>
     </div>
     {% else %}
     <form action="{{ url_for('save_key') }}" method=post class=add-entry>
       <dl>
-        <dt>Name:</dt>
+        <dt>{{ _('Name') }}:</dt>
         <dd><input type=text name=name></dd>
-        <dt>Current User:</dt>
+        <dt>{{ _('Current user') }}:</dt>
         <dd>
             <select name=user>
                 {% for user in users %}
@@ -19,7 +19,7 @@
                 {% endfor %}
             </select>
         </dd>
-        <dd><input type=submit value=Save></dd>
+        <dd><input type=submit value={{ _('Save') }}></dd>
       </dl>
     </form>
     {% endif %}
