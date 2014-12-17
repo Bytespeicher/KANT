@@ -2,21 +2,21 @@
 {% block body %}
   <table class=entries>
     <tr>
-        <th>Name</th>
-        <th>Mail</th>
-        <th>Phone</th>
-        <th>Edit</th>
+      <th>{{ _('Name') }}</th>
+      <th>{{ _('Mail') }}</th>
+      <th>{{ _('Phone') }}</th>
+      <th>{{ _('Edit') }}</th>
     </tr>
   {% for user in users %}
     <tr>
       <td>{{ user.name|safe }}</td>
       <td>{{ user.mail|safe }}</td>
       <td>{{ user.phone|safe }}</td>
-      <td><a href="{{ url_for('edit_user', id=user.id) }}">Edit user</a></td>
+      <td><a href="{{ url_for('edit_user', id=user.id) }}">{{ _('Edit user') }}</a></td>
     </tr>
   {% else %}
     <tr>
-      <td colspan=4><em>Unbelievable.  No entries here so far</em></td>
+      <td colspan=4><em>{{ _('Unbelievable.  No entries here so far.') }}</em></td>
     </tr>
   {% endfor %}
   </table>
