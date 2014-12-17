@@ -2,11 +2,11 @@
 {% block body %}
   <table class=entries>
       <tr>
-          <th>Key name</th>
-          <th>User name</th>
-          <th>Last update</th>
+          <th>{{ _('Key name') }}</th>
+          <th>{{ _('User name') }}</th>
+          <th>{{ _('Last update') }}</th>
           {% if session.logged_in %}
-            <th>History</th>
+            <th>{{ _('History') }}</th>
             <th>&nbsp;</th>
           {% endif %}
       </tr>
@@ -16,12 +16,12 @@
     <td>{{ key.user_name }}</td>
     <td>{{ key.last_update }}</td>
     {% if session.logged_in %}
-      <td><a href="{{ url_for('show_key_history', id=key.id) }}">History</a></td>
-      <td><a href="{{ url_for('edit_key', id=key.id) }}">Edit</a></td>
+      <td><a href="{{ url_for('show_key_history', id=key.id) }}">{{ _('History') }}</a></td>
+      <td><a href="{{ url_for('edit_key', id=key.id) }}">{{ _('Edit') }}</a></td>
     {% endif %}
   </tr>
   {% else %}
-    <tr><td colspan=4><em>Unbelievable.  No entries here so far</em></td></tr>
+    <tr><td colspan=4><em>{{ _('Unbelievable.  No entries here so far.') }}</em></td></tr>
   {% endfor %}
   </table>
 {% endblock %}
