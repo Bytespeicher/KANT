@@ -4,11 +4,11 @@
 
   <table class=entries>
       <tr>
-          <th>Name before</th>
-          <th>Name after</th>
-          <th>User before</th>
-          <th>User after</th>
-          <th>Update</th>
+          <th>{{ _('Name before') }}</th>
+          <th>{{ _('Name after') }}</th>
+          <th>{{ _('User before') }}</th>
+          <th>{{ _('User after') }}</th>
+          <th>{{ _('Update') }}</th>
       </tr>
   {% for key in keys %}
   <tr>
@@ -17,7 +17,7 @@
     <td>{{ key.last_update }}</td>
   </tr>
   {% else %}
-    <li><em>Unbelievable.  No entries here so far</em>
+    <li><em>{{ _('Unbelievable.  No entries here so far.') }}</em>
   {% endfor %}
   </ul>
 {% endblock %}
