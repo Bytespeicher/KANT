@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 {% block body %}
   <h2>KANT - Install</h2>
-  {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
-  <p>Database (re-)initialized.</p>
+  {% if error %}
+    <p class=error><strong>{{ _('Error') }}:</strong> {{ error }}
+  {% endif %}
+  <p>{{ _('Database (re-)initialized.') }}</p>
 {% endblock %}
