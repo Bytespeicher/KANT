@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 {% block body %}
     <form method=post action="{{ url_for('save_admin') }}">
-        <dt>Name:
+        <dt>{{ _('Name') }}:
         <dd><input name=name value="{{ user.admin|safe }}">
-        <dt>Mail:
+        <dt>{{ _('Mail') }}:
         <dd><input name=mail value="{{ user.admin|safe }}" type=email>
-        <dt>Phone:
+        <dt>{{ _('Phone') }}:
         <dd><input name=password value="******" type=password>
         <input name=id value="{{ admin.id }}" type=hidden>
-        <input type=submit>
+        <input type=submit value="{{ _('Submit') }}">
     </form>
 {% endblock %}
