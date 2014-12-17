@@ -6,7 +6,7 @@ import datetime
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 
-from flask.ext.babel    import Babel
+from flask.ext.babel    import Babel, lazy_gettext
 from passlib.apps       import custom_app_context as pwd_context
 from config             import LANGUAGES
 
@@ -158,7 +158,7 @@ def save_key():
                    datetime.datetime.now()])
         db.commit()
 
-    flash('Changes to the user where saved successfully!')
+    flash(lazy_gettext('Changes to the user where saved successfully!'))
     return redirect(url_for('show_keys'))
 
 
@@ -187,7 +187,7 @@ def save_user():
 
     db.commit()
 
-    flash('Changes to the user where saved successfully!')
+    flash(lazy_gettext('Changes to the user where saved successfully!'))
     return redirect(url_for('show_users'))
 
 
@@ -213,19 +213,19 @@ def login():
         res = cur.fetchone()
 
         if res == None:
-            error = 'Invalid username'
+            error = lazy_gettext('Invalid username')
         elif pwd_context.verify(request.form['password'], res['password']) != True:
-            error = 'Invalid password'
+            error = lazy_gettext('Invalid password')
         else:
             session['logged_in'] = True
-            flash('You were logged in')
+            flash(lazy_gettext('You were logged in'))
             return redirect(url_for('show_keys'))
     return render_template('login.html', error=error)
 
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
-    flash('You were logged out')
+    flash(lazy_gettext('You were logged out'))
     return redirect(url_for('show_keys'))
 
 @app.route('/new_admin', methods=['GET'])
@@ -270,7 +270,7 @@ def save_admin():
 
     db.commit()
 
-    flash('Changes to the admin where saved successfully!')
+    flash(lazy_gettext('Changes to the admin where saved successfully!'))
     return redirect(url_for('show_admins'))
 
 @app.route('/install')
