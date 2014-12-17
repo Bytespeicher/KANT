@@ -1,0 +1,204 @@
+# English translations for PROJECT.
+# Copyright (C) 2014 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-12-17 15:37+0100\n"
+"PO-Revision-Date: 2014-12-17 15:25+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+
+#: src/kant.py:161 src/kant.py:190
+msgid "Changes to the user where saved successfully!"
+msgstr "Changes to the user where saved successfully!"
+
+#: src/kant.py:216
+msgid "Invalid username"
+msgstr "Invalid username"
+
+#: src/kant.py:218
+msgid "Invalid password"
+msgstr "Invalid password"
+
+#: src/kant.py:221
+msgid "You were logged in"
+msgstr "You were logged in"
+
+#: src/kant.py:228
+msgid "You were logged out"
+msgstr "You were logged out"
+
+#: src/kant.py:273
+msgid "Changes to the admin where saved successfully!"
+msgstr "Changes to the admin where saved successfully!"
+
+#: src/templates/edit_admin.html:4 src/templates/edit_key.html:5
+#: src/templates/edit_user.html:4 src/templates/new_admin.html:6
+#: src/templates/new_key.html:12 src/templates/new_user.html:6
+#: src/templates/show_users.html:5
+msgid "Name"
+msgstr "Name"
+
+#: src/templates/edit_admin.html:6 src/templates/edit_user.html:6
+#: src/templates/new_admin.html:10 src/templates/new_user.html:10
+#: src/templates/show_users.html:6
+msgid "Mail"
+msgstr "E-Mail"
+
+#: src/templates/edit_admin.html:8 src/templates/edit_user.html:8
+#: src/templates/new_user.html:8 src/templates/show_users.html:7
+msgid "Phone"
+msgstr "Phone"
+
+#: src/templates/edit_admin.html:11 src/templates/edit_key.html:20
+#: src/templates/edit_user.html:11
+msgid "Submit"
+msgstr "Submit"
+
+#: src/templates/edit_key.html:7
+msgid "Current User"
+msgstr "Current User"
+
+#: src/templates/edit_key.html:18 src/templates/new_admin.html:12
+#: src/templates/new_key.html:22 src/templates/new_user.html:12
+msgid "Save"
+msgstr "Save"
+
+#: src/templates/install.html:5 src/templates/login.html:5
+msgid "Error"
+msgstr "Error"
+
+#: src/templates/install.html:7
+msgid "Database (re-)initialized."
+msgstr "Database (re-)initialized."
+
+#: src/templates/layout.html:8
+msgid "Keylist"
+msgstr "Keylist"
+
+#: src/templates/layout.html:10
+msgid "Userlist"
+msgstr "Userlist"
+
+#: src/templates/layout.html:11
+msgid "Add Key"
+msgstr "Add Key"
+
+#: src/templates/layout.html:12
+msgid "Add User"
+msgstr "Add User"
+
+#: src/templates/layout.html:15
+msgid "Adminlist"
+msgstr "Adminlist"
+
+#: src/templates/layout.html:16
+msgid "New Admin"
+msgstr "New Admin"
+
+#: src/templates/layout.html:19 src/templates/login.html:3
+#: src/templates/login.html:13
+msgid "Login"
+msgstr "Login"
+
+#: src/templates/layout.html:21
+msgid "Logout"
+msgstr "Logout"
+
+#: src/templates/login.html:9
+msgid "Username"
+msgstr "Username"
+
+#: src/templates/login.html:11 src/templates/new_admin.html:8
+msgid "Password"
+msgstr "Password"
+
+#: src/templates/new_key.html:6
+msgid "No users yet to assign keys to."
+msgstr "No users yet to assign keys to."
+
+#: src/templates/new_key.html:7
+msgid "Create a users"
+msgstr "Create a user"
+
+#: src/templates/new_key.html:14
+msgid "Current user"
+msgstr "Current user"
+
+#: src/templates/show_key_history.html:7
+msgid "Name before"
+msgstr "Name before"
+
+#: src/templates/show_key_history.html:8
+msgid "Name after"
+msgstr "Name after"
+
+#: src/templates/show_key_history.html:9
+msgid "User before"
+msgstr "User before"
+
+#: src/templates/show_key_history.html:10
+msgid "User after"
+msgstr "User after"
+
+#: src/templates/show_key_history.html:11
+msgid "Update"
+msgstr "Update"
+
+#: src/templates/show_key_history.html:20 src/templates/show_keys.html:24
+#: src/templates/show_users.html:19
+msgid "Unbelievable.  No entries here so far."
+msgstr "Unbelievable.  No entries here so far."
+
+#: src/templates/show_keys.html:5
+msgid "Key name"
+msgstr "Key name"
+
+#: src/templates/show_keys.html:6
+msgid "User name"
+msgstr "User name"
+
+#: src/templates/show_keys.html:7
+msgid "Last update"
+msgstr "Last update"
+
+#: src/templates/show_keys.html:9 src/templates/show_keys.html:19
+msgid "History"
+msgstr "History"
+
+#: src/templates/show_keys.html:20 src/templates/show_users.html:8
+msgid "Edit"
+msgstr "Edit"
+
+#: src/templates/show_users.html:15
+msgid "Edit user"
+msgstr "Edit user"
+
+#~ msgid "Changes to the user where saved successfully!"
+#~ msgstr "Changes to the user where saved successfully!"
+
+#~ msgid "Invalid username"
+#~ msgstr "Invalid username"
+
+#~ msgid "Invalid password"
+#~ msgstr "Invalid password"
+
+#~ msgid "You were logged in"
+#~ msgstr "You were logged in"
+
+#~ msgid "You were logged out"
+#~ msgstr "You were logged out"
+
+#~ msgid "Changes to the admin where saved successfully!"
+#~ msgstr "Changes to the admin where saved successfully!"
+
