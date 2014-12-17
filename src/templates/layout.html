@@ -5,20 +5,20 @@
   <h1>KANT</h1>
   <nav class=metanav>
       <ul>
-          <li><a href="{{ url_for('show_keys') }}">Keylist</a></li>
+          <li><a href="{{ url_for('show_keys') }}">{{ _('Keylist') }}</a></li>
           {% if session.logged_in %}
-            <li><a href="{{ url_for('show_users') }}">Userlist</a></li>
-            <li><a href="{{ url_for('new_key') }}">Add Key</a></li>
-            <li><a href="{{ url_for('new_user') }}">Add User</a></li>
+            <li><a href="{{ url_for('show_users') }}">{{ _('Userlist') }}</a></li>
+            <li><a href="{{ url_for('new_key') }}">{{ _('Add Key') }}</a></li>
+            <li><a href="{{ url_for('new_user') }}">{{ _('Add User') }}</a></li>
           {% endif %}
           {% if session.is_admin %}
-            <li><a href="{{ url_for('new_user') }}">Adminlist</a></li>
-            <li><a href="{{ url_for('new_user') }}">New Admin</a></li>
+            <li><a href="{{ url_for('new_user') }}">{{ _('Adminlist') }}</a></li>
+            <li><a href="{{ url_for('new_user') }}">{{ _('New Admin') }}</a></li>
           {% endif %}
           {% if not session.logged_in %}
-            <li><a href="{{ url_for('login') }}">login</a></li>
+            <li><a href="{{ url_for('login') }}">{{ _('Login') }}</a></li>
           {% else %}
-            <li><a href="{{ url_for('logout') }}">logout</a></li>
+            <li><a href="{{ url_for('logout') }}">{{ _('Logout') }}</a></li>
           {% endif %}
       </ul>
   </nav>
