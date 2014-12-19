@@ -6,9 +6,9 @@
   {% endif %}
   <form action="{{ url_for('login') }}" method=post>
     <dl>
-      <dt>{{ _('Username') }}':
+      <dt>{{ _('Username') }}:
       <dd><input type=text name=username>
-      <dt>{{ _('Password') }}':
+      <dt>{{ _('Password') }}:
       <dd><input type=password name=password>
       <dd><input type=submit value={{ _('Login') }}>
     </dl>
